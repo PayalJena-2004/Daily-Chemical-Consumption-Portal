@@ -1,0 +1,201 @@
+
+  
+  <style>
+    /* Reset default link styles inside buttons */
+    .btn a, .btn a:visited {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1b2735, #3a4a61, #dfe3e6);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f9fafb;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #003366;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header img {
+      height: 45px;
+    }
+
+    .header h2 {
+      flex: 1;
+      text-align: center;
+      margin: 0;
+      font-size:2.4rem;
+
+    }
+
+    .sub-header {
+      background-color: #f57c00;
+      height: 8px;
+      width: 100%;
+    }
+
+    .welcome-container {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 50px 70px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.4);
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: box-shadow 0.3s ease;
+      margin: auto;
+    }
+
+    .welcome-container:hover {
+      box-shadow: 0 16px 60px rgba(15, 23, 42, 0.6);
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 45px;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.45);
+      color: #f9fafb;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .btn {
+      width: 140px;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 12px 0;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.15rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: #f9fafb;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transform: translateY(-3px);
+      color: #fff;
+    }
+
+    .btn-success {
+      background-color: #2a9d8f;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #23877e;
+    }
+
+    .btn-primary {
+      background-color: #264653;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e3649;
+    }
+    #image{
+      /* height:3.7rem; */
+      /* padding-top:1rem; */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 0.75rem;
+    margin-right:1rem;
+   
+   
+    }
+ #dateTime {
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+}
+#image2{
+  color:white;
+  height:12rem;
+  width:12rem;
+  
+}
+  </style>
+</head>
+<body>
+  <div class="header">
+      <img src="/IOCL-logo.jpg?<%= Date.now() %>" alt="logo" id="image">
+    <h2>Paradip Refinery</h2>
+     <span id="dateTime"></span>
+  </div>
+  
+ <!-- <div>
+<img src="/chemicalIcon.png?<%= Date.now() %>" alt="logo" id="image2">
+</div> -->
+  <div class="welcome-container" role="main" aria-label="Welcome Portal">
+    <h1>Welcome to Chemical Consumption Portal</h1>
+    <div class="btn-group" role="navigation" aria-label="Authentication options">
+      <a href="/signup" class="btn btn-success" role="button">Register</a>
+      <a href="/login" class="btn btn-primary" role="button">Login</a>
+    </div>
+   
+  </div>
+
+  <script>
+    function updateDateTime() {
+  const dateTimeElem = document.getElementById('dateTime');
+  const now = new Date();
+
+  // Format date as yyyy-mm-dd
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+
+  // Format time in 12-hour format with AM/PM
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // convert 0 to 12
+
+  const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+  // Combine date and time string
+  const dateTimeString = `${yyyy}-${mm}-${dd}, ${timeString}`;
+
+  dateTimeElem.textContent = dateTimeString;
+}
+
+// Initial call
+updateDateTime();
+
+// Update every 1000 milliseconds (1 second)
+setInterval(updateDateTime, 1000);
+  </script>
+</body>
+

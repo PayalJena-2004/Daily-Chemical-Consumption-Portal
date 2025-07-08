@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-header {
+      background-color: #1a237e;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      height: 75px; /* increased from 60px */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #3949ab;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    #image {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 8px;
+    }
+
+    .logoText {
+      display: flex;
+      align-items: center;
+    }
+
+    .logoText p {
+      margin: 0;
+    }
+
+    .welcome-message {
+      font-size: 0.9rem;
+    }
+
+    .middle {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .form-card {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 0.8rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .form-label {
+      display: block;
+      color: #3b3c8c;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #333;
+      border-left: 4px solid red;
+      border-radius: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-submit {
+      background-color: #3b3c8c;
+      color: white;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-submit:hover {
+      background-color: #2f3170;
+    }
+
+    .footer {
+      background-color: #0d47a1;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem;
+      height: 55px;
+      font-size: 0.85rem;
+      border-top: 2px solid #3b5998;
+      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      bottom: 0;
+      z-index: 999;
+    }
+
+    .footer p {
+      margin: 0.2rem 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="main-header">
+    <div class="logoText">
+      <img src="/IOCL-logo2.png?<%= Date.now() %>" alt="logo" id="image">
+      <div>
+        <p style="font-size: 1.1rem; font-weight: bold;">Indian Oil Corporation Limited</p>
+        <p style="font-size: 0.75rem; opacity: 0.85;">Daily Chemical Consumption Portal</p>
+      </div>
+    </div>
+    <div class="welcome-message">
+      👋 Welcome! Please sign up.
+    </div>
+  </header>
+
+  <div class="middle">
+    <div class="form-card">
+      <form method="POST" action="/signup" novalidate>
+        <label for="username" class="form-label">Username</label>
+        <input name="username" type="text" class="form-control" required>
+
+        <label for="email" class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" required>
+
+        <label for="password" class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" required>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>📧 support@iocl.in</p>
+    <p>📞 +91-1234-567890</p>
+  </footer>
+
+</body>
+</html>

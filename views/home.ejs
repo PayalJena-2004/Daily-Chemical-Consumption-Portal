@@ -1,0 +1,519 @@
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+ <style>
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f2f4f8;
+  overflow-x: hidden;
+}
+
+/* === Sticky Header === */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #f26522;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  border: 1px solid blue;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+}
+
+#name {
+  margin-left: 20rem;
+  font-size: 1.5rem;
+}
+
+#logoName {
+  padding-top: 0.2rem;
+  font-size: 1.3rem;
+}
+
+#dateTime {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag a {
+  color: white;
+  text-decoration: none;
+}
+
+/* === Sidebar and Main Space === */
+.space {
+  display: flex;
+  flex-direction: row;
+  background-color: #FAFAD2;
+  flex: 1;
+  height: calc(100vh - 7rem); /* Adjusted: header (4rem) + footer (3rem) */
+  margin-top: 4rem; /* below fixed header */
+  overflow: hidden;
+}
+
+.sideBar-space {
+  width: 13%;
+  background-color: #2980b9;
+  border-radius: 1.2rem;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.7);
+  color: white;
+  text-align: left;
+}
+
+.sideBar-space h3 {
+  color: white;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.page, .setting, .logout {
+  margin-left: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.page a, .setting a, .logout a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-left: 0.6rem;
+}
+
+.page i, .setting i, .logout i {
+  color: white;
+}
+
+/* === Main Form Space === */
+.form-space {
+  margin-left: 1rem;
+  padding: 1rem;
+  overflow-y: auto;
+  width: 100%;
+}
+
+main {
+  max-width: 900px;
+  margin: 1rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid blue;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-control {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-control.full-width {
+  flex: 1 1 100%;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #0059b3;
+}
+
+input, select, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  border-left: 0.25rem solid red;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+button {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: #2980b9;
+  color: white;
+}
+
+.btn-reset {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.detail {
+  background-color: #2980b9;
+  color: white;
+}
+
+/* === Scrollbar Handling === */
+.form-space::-webkit-scrollbar {
+  display: none;
+}
+.form-space {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* === Sticky Footer === */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f26522;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 1px solid blue;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  z-index: 1000;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  display: inline-block;
+  animation: scroll-left 12s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* === Bottom IOCL logo in Sidebar === */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  align-items: center;
+}
+
+#images {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.iocl {
+  color: white;
+  margin-left: 0.5rem; /* reduced from 0.85rem */
+  font-size: 0.85rem;
+}
+
+
+.white-line {
+  border: none;
+  height: 2px;
+  background-color: white;
+  width: 100%;
+}
+
+.corner-box {
+  position: fixed;
+  bottom: 4.5rem;
+  right: 2rem;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid blue;
+}
+
+
+
+  </style>
+
+
+</head>
+<body>
+
+  <header>
+    
+    <div class="heading">
+      <!-- <img src="IOCL-logo.jpg" alt="logo" id="image"> -->
+      <!-- <img src="/IOCL-logo2.png?<%= Date.now() %>" alt="logo" id="image"> -->
+        <p id="logoName">Daily Chemical Consumption Portal</p>
+        <p id="name">Indian Oil Corporation Limited</p>
+    </div>
+   <div class="tag">
+    
+    <span id="dateTime"></span>
+  </div>
+
+  </header>
+
+ 
+    <div class="space">
+      <div class="sideBar-space">
+      <h3 style="color:chocolate;margin-left:2rem;">Content Panel</h3>
+     <div class="page">
+         <i class="fa-solid fa-file-signature"></i><a href="/report">Report Page</a>
+     </div>
+     <div class="setting">
+         <i class="fa-solid fa-gear"></i><a href="#">Settings</a>
+      </div>
+     <div class="logout">
+            <i class="fa-solid fa-right-from-bracket"></i><a href="/welcome">Logout</a>
+     </div>
+      <div class="bottom">
+         <hr class="white-line">
+        <div> <img src="/IOCL-logo2.png?<%= Date.now() %>" alt="logo" id="images"></div>
+        <div class="iocl"><h3>Indian Oil <br>Corporation Limited</h3></div>
+
+      </div>
+    </div>
+   
+    
+
+
+
+    <div class="form-space">
+  <main>
+    <% if (success) { %>
+    <div id="success-msg" style = "background-color: #d4edda; color: #155724; padding: 10px; margin: 1rem auto; border-radius: 5px; max-width: 700px; text-align: center;">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <% if (error) { %>
+    <div id="error-msg" style="background-color: #f8d7da; color: #721c24; padding: 10px; margin: 1rem auto; border-radius: 5px; max-width: 700px; text-align: center;">
+      <%= error %>
+    </div>
+  <% } %>
+    <div style=" background-color:blue;border-radius:0.25rem;" >
+    <h2 style="color: white; margin-left:7.5rem;">Daily Chemical Management & Data Entry Panel</h2>
+    </div>
+   <form action="/home" method="POST">
+
+      <div class="form-group">
+        <div class="form-control">
+          <label for="date">Start Date</label>
+          <input type="date" id="date" name="DC_DATE"/>
+        </div>
+        <div class="form-control">
+          <label for="unit">Select Unit</label>
+          <select id="unit" name="UNIT_CODE">
+            <option value="unit A">unit A</option>
+            <option value="unit B">unit B</option>
+            <option value="unit C">unit C</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label for="chemical">Select Chemical</label>
+          <select id="chemical" name="CHEMICAL_CODE" >
+            <option value="sulphuric Acid">sulphuric Acid</option>
+            <option value="Nitric Acid">Nitric Acid</option>
+            <option value="CH003">CH003</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label for="uom">Unit of Management(UOM)</label>
+          <input type="number" id="uom" name="UOM" placeholder="Only numeric value allowed"/>
+        </div>
+        <div class="form-control">
+          <label for="code">Sap Material Code</label>
+          <input type="number" id="code" name="SAP_MAT_CODE" placeholder="Only numeric value allowed"/>
+        </div>
+        <div class="form-control">
+          <label for="balance">Opening Balance</label>
+          <input type="number" id="balance" name="OPENING_BALANCE" placeholder="Only numeric value allowed"/>
+        </div>
+        <div class="form-control">
+          <label for="receive">Enter Receive Qty</label>
+          <input type="text" id="receive" name="RECIVE_QTY" placeholder="Only numeric value allowed"/>
+        </div>
+        <div class="form-control">
+          <label for="consumption">Enter Consumption Qty</label>
+          <input type="text" id="consumption" name="CONSUMPTION_QTY"placeholder="Only numeric value allowed"/>
+        </div>
+        <div class="form-control">
+          <label for="closing">Closing Balance</label>
+          <div>
+          <input type="text" id="closing" style="width:19rem" name="CLOSING_BALANCE" placeholder="Only numeric value allowed"/>
+           <button class="detail">Details</button>
+          </div>
+        </div>
+        <div class="form-control">
+          <label for="sbalance">SAP Balance</label>
+          <input type="text" id="sbalance"name="SAP_BALANCE"placeholder="Only numeric value allowed" />
+        </div>
+        <div class="form-control full-width">
+          <label>Remarks</label>
+        <textarea rows="3" name="REMARKS" placeholder="Enter any remarks"></textarea>
+
+        </div>
+      </div>
+      <div class="form-actions">
+      <button type="button" class="btn-reset" onclick="customReset()">Reset</button>
+
+        <button type="submit" class="btn-submit">Submit</button>
+      </div>
+    </form>
+  </main>
+  </div>
+  <div class="corner-box">
+  Welcome,User
+</div>
+
+ </div> 
+ 
+ <footer class="footer">
+  <div class="scrolling-text">
+    "Thanks you for visiting Our Daily Chemical Consumption Entry Page Developed By IS Department"
+  </div>
+</footer>
+
+<script>
+ function updateDateTime() {
+  const dateTimeElem = document.getElementById('dateTime');
+  const now = new Date();
+
+  // Get weekday name
+  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const weekdayName = weekdays[now.getDay()];
+
+  // Get date parts
+  const day = String(now.getDate()).padStart(2, '0');
+  const months = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "November", "December"];
+  const monthName = months[now.getMonth()];
+  const year = now.getFullYear();
+
+  // Format time in 12-hour format with AM/PM
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // convert 0 to 12
+  const hourStr = String(hours).padStart(2, '0');
+
+  const timeString = `${hourStr}:${minutes}:${seconds} ${ampm}`;
+
+  // Final formatted date-time string
+  const dateTimeString = `${weekdayName}, ${day} ${monthName} ${year}, ${timeString}`;
+
+  dateTimeElem.textContent = dateTimeString;
+}
+
+// Initial call
+updateDateTime();
+
+// Update every second
+setInterval(updateDateTime, 1000);
+
+
+setTimeout(() => {
+    const successMsg = document.getElementById('success-msg');
+    if (successMsg) {
+      successMsg.style.display = 'none';
+    }
+  }, 3000);
+
+  // Get input elements
+  const openingInput = document.getElementById("balance");
+  const receiveInput = document.getElementById("receive");
+  const consumptionInput = document.getElementById("consumption");
+  const closingInput = document.getElementById("closing");
+
+  function calculateClosingBalance() {
+    const opening = parseFloat(openingInput.value) || 0;
+    const receive = parseFloat(receiveInput.value) || 0;
+    const consumption = parseFloat(consumptionInput.value) || 0;
+
+    const closing = opening + receive - consumption;
+    closingInput.value = closing.toFixed(2); // Round to 2 decimal places
+  }
+
+  // Add event listeners to update when input changes
+  openingInput.addEventListener("input", calculateClosingBalance);
+  receiveInput.addEventListener("input", calculateClosingBalance);
+  consumptionInput.addEventListener("input", calculateClosingBalance);
+
+const dateInput = document.getElementById('date');
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0
+  const dd = String(today.getDate()).padStart(2, '0');
+  const maxDate = `${yyyy}-${mm}-${dd}`;
+  dateInput.max = maxDate;
+  function customReset() {
+  // Clear all input values
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    if (el.tagName === "SELECT") {
+      el.selectedIndex = 0; // Reset to first option
+    } else if (el.tagName === "TEXTAREA") {
+      el.value = ""; // Clear textarea
+      el.placeholder = "Enter any remarks"; // Reset placeholder
+    } else {
+      el.value = "";
+    }
+  });
+
+  // Optional: scroll to top of form or focus first input
+  document.getElementById("date").focus();
+}
+
+</script>
+</body>
